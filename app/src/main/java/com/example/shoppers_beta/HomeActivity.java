@@ -52,7 +52,7 @@ import com.example.shoppers_beta.model.Product;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private AppBarConfiguration mAppBarConfiguration;
+    //private AppBarConfiguration mAppBarConfiguration;
     private DatabaseReference ProductsRef;
     private RecyclerView recyclerView;
 
