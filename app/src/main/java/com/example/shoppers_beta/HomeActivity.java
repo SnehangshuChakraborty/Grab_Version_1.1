@@ -175,10 +175,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     {
         int id = item.getItemId();
 
-//        if (id == R.id.action_settings)
-//        {
-//            return true;
-//        }
+        if(id == R.id.head_search_icon){
+            //todo search
+            return true;
+        }else if(id == R.id.head_notification_icon){
+            //todo notification
+            return true;
+        }else if( id == R.id.head_cart_icon){
+            //todo cart
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

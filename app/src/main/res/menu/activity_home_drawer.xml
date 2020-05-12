@@ -3,17 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group>
         <item
             android:id="@+id/nav_cart"
             android:icon="@drawable/nav_cart"
             android:title="Cart"
             android:iconTint="@android:color/white"/>
+
+        <item
+            android:id="@+id/nav_my_orders"
+            android:icon="@drawable/my_orders"
+            android:title="My Orders"
+            android:iconTint="@android:color/white"/>
+
         <item
             android:id="@+id/nav_orders"
-            android:icon="@android:drawable/ic_search_category_default"
+            android:icon="@drawable/search_black"
             android:title="Search"
             android:iconTint="@android:color/white"/>
+
         <item
             android:id="@+id/nav_categories"
             android:icon="@drawable/category"
