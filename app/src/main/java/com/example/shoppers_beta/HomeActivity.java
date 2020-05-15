@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.example.shoppers_beta.Prevalent.Prevalent;
 import com.example.shoppers_beta.ViewHolder.ProductViewHolder;
+import com.example.shoppers_beta.ViewHolder.ViewPagerHolder;
 import com.example.shoppers_beta.model.Product;
 //import com.example.shoppers_beta.ui.home.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -38,6 +39,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
 import android.view.ViewGroup;
@@ -55,6 +57,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     //private AppBarConfiguration mAppBarConfiguration;
     private DatabaseReference ProductsRef;
     private RecyclerView recyclerView;
+    private ViewPager banner_image;
 
     RecyclerView.LayoutManager layoutManager;
 
@@ -97,11 +100,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         userNameTextView.setText(Prevalent.currentOnlineUser.getName());
         Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
 
-
+        //setting up the background of Navigation layout
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        banner_image = findViewById(R.id.banner_image);
+        ViewPagerHolder viewPagerHolder = new ViewPagerHolder(this);
+        banner_image.setAdapter(viewPagerHolder);
     }
 
 
@@ -110,12 +117,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     {
         super.onStart();
 
+        //Fetching Data from Firebase
         FirebaseRecyclerOptions<Product> options =
                 new FirebaseRecyclerOptions.Builder<Product>()
                         .setQuery(ProductsRef, Product.class)
                         .build();
 
-
+        //Setting the Data in Fragment_Home
         FirebaseRecyclerAdapter<Product, ProductViewHolder> adapter =
                 new FirebaseRecyclerAdapter<Product, ProductViewHolder>(options) {
                     @Override
@@ -145,6 +153,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         return holder;
                     }
                 };
+
         recyclerView.setAdapter(adapter);
         adapter.startListening();
     }
